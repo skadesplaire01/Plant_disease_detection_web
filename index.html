@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Disease Detection</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #a8e6cf, #dcedc1);
+      height: 100vh;
+      display: flex;
+    }
+
+    .main {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      background: rgb(255, 255, 255);
+    }
+
+    .left {
+      flex: 1;
+      background: #4CAF50;
+      color: rgb(255, 255, 255);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px;
+      position: relative;
+    }
+
+    /* Logo Section */
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      display: flex;
+      align-items: center;
+      color: rgb(0, 0, 0);
+      font-weight: bold;
+      font-size: 1.8rem;
+    }
+
+    .logo i {
+      margin-right: 10px;
+      font-size: 2rem;
+    }
+
+    .left h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .left p {
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .container {
+      flex: 1;
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h2 {
+      color: #4CAF50;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    input[type="file"] {
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .clear-btn {
+      background-color: #f44336;
+    }
+
+    .clear-btn:hover {
+      background-color: #d32f2f;
+    }
+
+    .result-card {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      font-weight: bold;
+      font-size: 18px;
+      text-align: left;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .result-card.healthy {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .result-card.diseased {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .treatment {
+      margin-top: 15px;
+      padding: 10px;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+  <!-- FontAwesome for logo icon -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="main">
+    <!-- Left Section -->
+    <div class="left">
+      <!-- Logo -->
+      <div class="logo">
+        <i class="fas fa-leaf"></i> 🍃LeafSense
+      </div>
+
+      <h1>🌿 Protect Your Plants with AI Technology</h1>
+      <p>Upload an image of your plant and get instant diagnosis of any diseases with our advanced AI-powered detection system.</p>
+    </div>
+
+    <!-- Right Section -->
+    <div class="container">
+      <h2>Plant Disease Detection</h2>
+      <form method="POST" enctype="multipart/form-data" id="uploadForm">
+        <input type="file" name="file" accept="image/*" required><br>
+        <div class="btns">
+          <button type="submit">Predict</button>
+          <button type="button" class="clear-btn" onclick="clearResult()">Clear</button>
+        </div>
+      </form>
+
+      {% if result %}
+      <div class="result-card {% if result.status == 'Healthy' %}healthy{% else %}diseased{% endif %}">
+        <h3>{{ result.class }}</h3>
+        <p><strong>Status:</strong> {{ result.status }}</p>
+        <p>{{ result.description }}</p>
+
+        <div class="treatment">
+          <strong>Treatment:</strong>
+          {% if result.status == 'Healthy' %}
+            <p>✅ Your plant is healthy! Maintain regular watering, provide adequate sunlight, and monitor periodically for any signs of disease.</p>
+          {% else %}
+            <p>⚠️ Your plant shows signs of disease. Suggested treatment: remove infected leaves, use organic fungicide, improve soil health, and ensure proper air circulation.</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
+
+      <footer>
+        Developed by Pooja Bhalekar
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    function clearResult() {
+      document.getElementById("uploadForm").reset();
+      const resultCard = document.querySelector(".result-card");
+      if (resultCard) resultCard.remove();
+    }
+  </script>
+</body>
+</html>
