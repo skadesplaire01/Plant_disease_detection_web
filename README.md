@@ -24,3 +24,33 @@ Built with **Random Forest Classifier** and **Flask**, achieving **85% accuracy*
 ---
 
 ## 📂 Project Structure
+plant_disease_detection/
+│── app.py # Flask backend
+│── rf_model.pkl # Trained Random Forest model
+│── class_names.json # Class labels
+│── dataset/ # Dataset (images of leaves)
+│── templates/
+│ └── index.html # Frontend template
+
+
+---
+
+## 🚀 How to Run Locally
+
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/your-username/plant-disease-detection.git
+   cd plant-disease-detection
+   
+2. **Create virtual environment & install dependencies**
+python -m venv venv
+source venv/bin/activate   # For Linux/Mac
+venv\Scripts\activate      # For Windows
+pip install -r requirements.txt
+
+3.**Run the Flask app**
+python app.py
+
+4. **Open in browser → http://127.0.0.1:5000/**
+
+
