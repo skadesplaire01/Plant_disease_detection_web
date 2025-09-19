@@ -1,4 +1,4 @@
-# Plant_disease_detection_web
+# Plant_disease_detection_using_ML + flask
 # 🌱 LeafSense – AI-Powered Plant Disease Detection
 
 A machine learning–based web application that detects **plant diseases** from leaf images and provides **disease details & treatment suggestions**.  
