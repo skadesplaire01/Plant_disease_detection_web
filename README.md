@@ -53,6 +53,12 @@ plant_disease_detection/
 python app.py
 
 4. **Open in browser → http://127.0.0.1:5000/**
+   
+ **SCREENSHOTS 📸**
+<img width="1359" height="656" alt="image" src="https://github.com/user-attachments/assets/32c5de3d-2f9c-4e99-876e-57bc6857b654" />
+<img width="1363" height="653" alt="image" src="https://github.com/user-attachments/assets/9e347289-5fe9-437e-b19d-6d4c3c47d679" />
+<img width="1356" height="651" alt="image" src="https://github.com/user-attachments/assets/91110b26-2b6e-488f-86a3-00d9112d7cf6" />
+
 
 
 
